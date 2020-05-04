@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { requestTaskCreation } from '../store/mutation';
 
 export const TaskList = ({tasks, name, id, createNewTask}) =>(
     <div>
@@ -31,6 +32,7 @@ const mapDishpatchToProps = (dispatch, ownProps) =>{
     return{
         createNewTask(id){
             console.log("Creating New Task...",id);
+            dispatch(requestTaskCreation(id));
         }
     }
 }
