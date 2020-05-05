@@ -20,7 +20,6 @@ export function* taskCreationSaga(){
                 name: "New Task"
             }
         });
-        console.log("resss",res)
     }
 }
 // Note that all Sagas Run automatically in index.js
