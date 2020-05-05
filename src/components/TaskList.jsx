@@ -8,8 +8,8 @@ export const TaskList = ({tasks, name, id, createNewTask}) =>(
         {name}
         <ul>
             {tasks.map(task =>
-                <li>
-                    <Link to={`/task/${task.id}`} key={task.id}>
+                <li key={task.id}>
+                    <Link to={`/task/${task.id}`}>
                         {task.name}
                     </Link>
                 </li>
@@ -31,7 +31,6 @@ const mapStateToProps = (state, ownProps) =>{
 const mapDishpatchToProps = (dispatch, ownProps) =>{
     return{
         createNewTask(id){
-            console.log("Creating New Task...",id);
             dispatch(requestTaskCreation(id));
         }
     }

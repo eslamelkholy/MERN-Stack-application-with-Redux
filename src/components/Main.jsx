@@ -19,8 +19,8 @@ export const Main = () =>(
                 />
                 <Route 
                     exact
-                    path="task/:id"
-                    render= {(match) => ( <ConnectTaskDetails match={match} /> )}
+                    path="/task/:id"
+                    render= {({match}) => ( <ConnectTaskDetails match={match} /> )}
                 />
             </div>
         </Provider>
