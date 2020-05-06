@@ -1,5 +1,5 @@
 # MERN Stack Application With Redux
-### This Project Related to MERN Stack About a University System where we Can implement User Authentication And Authorization and Fully System Control
+### This Project Related to MERN Stack Using Redux in the Front-End and the Bussiness is About a University System where we Can implement User Authentication And Authorization and Fully System Control
 ### -Project Dependencies
 <pre>
 1-Nodejs
