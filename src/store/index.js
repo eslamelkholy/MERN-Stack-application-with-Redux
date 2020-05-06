@@ -11,12 +11,26 @@ const sagaMiddleware = createSagaMiddleware();
 
 export const store = createStore(
     combineReducers({
-        session(session = defaultState.session || {}){
-            return session;
+        session(userSession = defaultState.session || {}, action){
+            let {type, authenticated, session} = action;
+            // eslint-disable-next-line default-case
+            switch(type){
+                case mutations.SET_STATE:
+                    return {...userSession, id:action.state.session.id}
+                case mutations.REQUEST_AUTHENTICATE_USER:
+                    return {...userSession, authenticated:mutations.AUTHENTICATING};
+                
+                case mutations.PROCESSING_AUTHENTICATE_USER:
+                    return {...userSession, authenticated};
+                default:
+                    return userSession;
+            }
         },
-        tasks(tasks = defaultState.tasks, action){
+        tasks(tasks = [], action){
             // eslint-disable-next-line default-case
             switch (action.type) {
+                case mutations.SET_STATE:
+                    return action.state.tasks;
                 // Create New Task Handler
                 case mutations.CREATE_TASK:
                     return [...tasks, {
@@ -41,9 +55,19 @@ export const store = createStore(
             }
             return tasks;
         },
-        comments(comments = defaultState.comments){ return comments},
-        groups(groups = defaultState.groups){ return groups},
-        users(users = defaultState.comments){ return users},
+        comments(comments = []){
+            return comments
+        },
+        groups(groups = [], action){
+            // eslint-disable-next-line default-case
+            switch (action.type) {
+                case mutations.SET_STATE:
+                    return action.state.groups;
+                    
+            }
+            return groups
+        },
+        users(users = []){ return users},
     }),
 
     applyMiddleware(createLogger(), sagaMiddleware)
